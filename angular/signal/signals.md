@@ -60,7 +60,7 @@ Source: https://github.com/angular/angular/discussions/49090
 
 RxJs
 
-- Declare how streams of asynchronous data are handled
+- Declare how streams of asynchronous data is handled
 - Asynchronous
 - Is not glitch free (intermediate state)
 - Push changes directly to subscribers
@@ -70,11 +70,11 @@ RxJs
 
 Signal
 
-- Notify dependend models of changes
+- Notify dependencies of changes
 - Synchronous
 - Is glitch free (no intermediate state)
-- Push changes to dependend models
-- Dependend models pull changes
+- Push changes to dependencies
+- Dependencies pull changes
 
 ---
 ## Signal vs RxJs
@@ -157,3 +157,11 @@ export class AppComponent {
 
 ---
 ![bg contain](src/change_detection_rendering_cycle.webp)
+
+---
+## How to update DOM without zone.js and ngZone
+
+```typescript
+const el = document.createElement("div");
+effect(() => el.textContent = title());
+```
