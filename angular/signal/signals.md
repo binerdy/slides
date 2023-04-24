@@ -23,6 +23,10 @@ _class:
 - How to update DOM without zone.js and ngZone?
 
 ---
+## Signal
+![bg contain](src/signal_idea.svg)
+
+---
 ## Why Angular needs Signal
 Fine-Grained Reactivity in Angular.
 
