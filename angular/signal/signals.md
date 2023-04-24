@@ -77,24 +77,12 @@ Signal
 - Dependencies pull changes
 
 ---
-## Signal vs RxJs
+## RxJs
 ![bg contain](src/diamond_problem.svg)
 
 ---
 ## Signal
-* A value that changes over time
-
-Angular terminology
-
-| Function name | Type              | Description |
-|---------------|-------------------|-------------|
-| signal        | SettableSignal<T> | Producer    |
-| computed      | Signal<T>         | Both        |
-| effect        | Effect            | Consumer    |
-
----
-## Signal
-![bg contain](src/signal_idea.svg)
+![bg contain](src/no_diamond_problem.svg)
 
 ---
 ```typescript
@@ -112,6 +100,8 @@ export class AppComponent {
   constructor() {
     effect(() => console.log(this.description()));
   }
+
+  // ...this.title.set("new value");
 }
 ```
 
@@ -159,9 +149,4 @@ export class AppComponent {
 ![bg contain](src/change_detection_rendering_cycle.webp)
 
 ---
-## How to update DOM without zone.js and ngZone
-
-```typescript
-const el = document.createElement("div");
-effect(() => el.textContent = title());
-```
+![bg contain](src/framework.svg)
