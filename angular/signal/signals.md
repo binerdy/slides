@@ -11,41 +11,97 @@ _class:
   - invert
 ---
 
-# Angular Signal
+# Angular Signals
 
 ---
-## Questions
+## Content
 
-- Why does Angular need Signal?
-- Why not just use RxJs?
-- How does Signal's change detection work?
-- How is Signal initialized?
-- How to update DOM without zone.js and ngZone?
-
----
-## Signal
-![bg contain](src/signal_idea.svg)
+- What are Angular Signals?
+- Demo
+- How are Signals initialized?
+- Why does Angular want Signals?
+- Why doesn't Angular just use RxJs?
 
 ---
-## Why Angular needs Signal
-Fine-Grained Reactivity in Angular.
-
-Angular uses zone.js to **trigger** global top-down change detection for the whole application.
-
-- Add built-in reactivity using Signal
-- Track which parts of the data model components depend on
-- Synchronize the UI when that model changes
-
-Source: https://github.com/angular/angular/discussions/49090
+![bg contain](src/signals_1.png)
 
 ---
-## Benefits
+![bg contain](src/signals_2.png)
 
-- Fully zoneless applications
-- Simplification of many framework concepts
-- Significantly improved interoperability with RxJs
+---
+![bg contain](src/signals_3.png)
 
-Source: https://github.com/angular/angular/discussions/49090
+---
+![bg contain](src/signals_4.png)
+
+---
+![bg contain](src/signals_5.png)
+
+---
+![bg contain](src/signals_6.png)
+
+---
+![bg contain](src/signals_7.png)
+
+---
+![bg contain](src/signals_8.png)
+
+---
+![bg contain](src/signals_9.png)
+
+---
+![bg contain](src/signals_10.png)
+
+---
+![bg contain](src/signals_11.png)
+
+---
+![bg contain](src/signals_12.png)
+
+---
+## Demo
+
+---
+![bg contain](src/signals_timeline_00.svg)
+
+---
+![bg contain](src/signals_timeline_01.svg)
+
+---
+![bg contain](src/signals_timeline_02.svg)
+
+---
+![bg contain](src/signals_timeline_03.svg)
+
+---
+![bg contain](src/signals_timeline_04.svg)
+
+---
+![bg contain](src/signals_timeline_05.svg)
+
+---
+![bg contain](src/signals_timeline_06.svg)
+
+---
+![bg contain](src/signals_timeline_07.svg)
+
+---
+![bg contain](src/signals_timeline_08.svg)
+
+---
+## Why does Angular want Signals?
+
+Because of their high level goals.
+- Fine-Grained Reactivity in Angular
+- Path towards zoneless applications
+- Simplification of framework concepts
+- Interoperability with RxJs
+
+Source: [RFC](https://github.com/angular/angular/discussions/49685)
+
+---
+## Fine-Grained Reactivity
+- Comparison zone.js vs Signals
 
 ---
 ![bg contain](src/change_detection_comparison_01.svg)
@@ -87,70 +143,3 @@ Signal
 ---
 ## Signal
 ![bg contain](src/no_diamond_problem.svg)
-
----
-```typescript
-@Component({
-  selector: 'app-root',
-  template: `
-    <p>{{ title() }}</p>
-    <p>{{ description() }}</p>
-  `,
-})
-export class AppComponent {
-  title = signal("angular-example");
-  description = computed(() => `The title is ${this.title()}.`);
-
-  constructor() {
-    effect(() => console.log(this.description()));
-  }
-
-  // ...this.title.set("new value");
-}
-```
-
----
-![bg contain](src/signals_timeline_01.svg)
-
----
-![bg contain](src/signals_timeline_02.svg)
-
----
-![bg contain](src/signals_timeline_03.svg)
-
----
-![bg contain](src/signals_timeline_04.svg)
-
----
-![bg contain](src/signals_timeline_05.svg)
-
----
-![bg contain](src/signals_timeline_06.svg)
-
----
-![bg contain](src/signals_timeline_07.svg)
-
----
-![bg contain](src/signals_timeline_08.svg)
-
----
-![bg contain](src/signals_timeline_09.svg)
-
----
-![bg contain](src/signals_timeline_10.svg)
-
----
-![bg contain](src/signals_timeline_11.svg)
-
----
-![bg contain](src/signals_timeline_12.svg)
-
----
-## How to update DOM without zone.js and ngZone
-
-
----
-![bg contain](src/change_detection_rendering_cycle.webp)
-
----
-![bg contain](src/framework.svg)
